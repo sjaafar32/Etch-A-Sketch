@@ -20,9 +20,17 @@ function createGrid(number) {
         const cell = document.createElement('div');
         cell.classList.add('cell');
         grid.appendChild(cell);
-        console.log(cell)
+        
+        let y = randomColor();
+        let z = 'rgb(' + y + ')';
+        console.log(y);
+        console.log(z);
+
+        cell.style.setProperty('--cell-color', z); 
+        // document.documentElement.style.setProperty('--cell-color', 'red');
         cell.addEventListener('mouseover', () => {
-            cell.classList.add('blue');
+           cell.classList.add('cell-color');
+        
         })
     };
 }
@@ -32,5 +40,15 @@ reset.addEventListener('click', () => {
     gridArray.forEach((element) => {
         grid.removeChild(element);
     });
-    createGrid(16*16);
+    createGrid(x*x);
 });
+
+function randomColor() {
+    let num1 = Math.floor(Math.random() * 255);
+    let num2 = Math.floor(Math.random() * 255);
+    let num3 = Math.floor(Math.random() * 255);
+
+    let array = [num1, num2, num3];
+
+    return array;
+}
