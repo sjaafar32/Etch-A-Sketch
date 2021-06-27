@@ -9,7 +9,7 @@ main.appendChild(reset);
 let numOfCells;
 
 function input(){
-    numOfCells = prompt('Enter the number (30 or less) of cells you want on each side');
+    numOfCells = prompt('Enter the number (between 1 and 30) of rows and columns you would like');
 
     if(numOfCells<1 || numOfCells>30){ alert('Number must be between 1 and 30'); input();};
 
