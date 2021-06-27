@@ -6,27 +6,38 @@ reset.classList.add('button');
 reset.innerText = 'RESET';
 main.appendChild(reset);
 
+let numOfCells;
+
+function input(){
+    numOfCells = prompt('Enter the number (30 or less) of cells you want on each side');
+
+    if(numOfCells<1 || numOfCells>30){ alert('Number must be between 1 and 30'); input();};
+
+    let cellSize = (487.5-(0.5*(numOfCells-1)))/numOfCells + 'px';
+    
+    grid.style.setProperty('--input', numOfCells);
+    grid.style.setProperty('--cell-size', cellSize);
+    grid.classList.add('grid');
+    container.appendChild(grid);
+    return numOfCells;
+}
 
 const grid = document.createElement('div');
-grid.classList.add('grid');
-container.appendChild(grid);
 
-let x = 16;
+input();
 
-createGrid(x*x);
+createGrid(numOfCells*numOfCells);
 
 function createGrid(number) {
+    
+
     for(let i = 1; i <= number; i++){
         const cell = document.createElement('div');
         cell.classList.add('cell');
-        grid.appendChild(cell);
         
-        let y = randomColor();
-        let z = 'rgb(' + y + ')';
-        console.log(y);
-        console.log(z);
+        grid.appendChild(cell);
 
-        cell.style.setProperty('--cell-color', z); 
+        cell.style.setProperty('--cell-color', 'rgb(' + randomColor() + ')'); 
         // document.documentElement.style.setProperty('--cell-color', 'red');
         cell.addEventListener('mouseover', () => {
            cell.classList.add('cell-color');
@@ -40,7 +51,8 @@ reset.addEventListener('click', () => {
     gridArray.forEach((element) => {
         grid.removeChild(element);
     });
-    createGrid(x*x);
+    input();
+    createGrid(numOfCells*numOfCells);
 });
 
 function randomColor() {

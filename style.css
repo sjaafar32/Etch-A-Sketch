@@ -1,5 +1,7 @@
 :root {
     --cell-color: blue;
+    --input: 16;
+    --cell-size: 30px;
 }
 
 body {
@@ -24,14 +26,16 @@ body {
   }
   .grid {
     display: grid;
-    grid-template-columns: repeat(16, 30px);
-    grid-template-rows: repeat(16, 30px);
-    grid-gap: .5px;    
+    grid-template-columns: repeat(var(--input), var(--cell-size));
+    grid-template-rows: repeat(var(--input), var(--cell-size));
+    grid-gap: .5px;
+    height: 487.5px;
+    width: 487.5px; 
   }
   .cell {
+    display: flex;
     justify-content: center;
     align-items: center;
-    display: flex;
     font-family: Arial;
     font-size: 3rem;
     font-weight: bold;
